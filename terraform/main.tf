@@ -26,3 +26,8 @@ EOF
     error_document = "error.html"
   }
 }
+
+resource "aws_acm_certificate" "certificate" {
+  domain_name       = "${var.domain_name}"
+  validation_method = "EMAIL"
+}

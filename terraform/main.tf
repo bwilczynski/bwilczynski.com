@@ -2,6 +2,11 @@ provider aws {
   region = "${var.aws_region}"
 }
 
+provider "aws" {
+  region = "us-east-1"
+  alias  = "useast1"
+}
+
 resource "aws_s3_bucket" "website" {
   bucket = "${var.bucket_name}"
   acl    = "public-read"
@@ -28,6 +33,7 @@ EOF
 }
 
 resource "aws_acm_certificate" "certificate" {
+  provider          = "aws.useast1"
   domain_name       = "${var.domain_name}"
   validation_method = "EMAIL"
 }

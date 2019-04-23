@@ -1,10 +1,15 @@
 provider aws {
-  region = "${var.aws_region}"
+  region  = "${var.aws_region}"
+  version = "~> 2.7"
 }
 
 provider "aws" {
   region = "us-east-1"
   alias  = "useast1"
+}
+
+terraform {
+  backend "s3" {}
 }
 
 resource "aws_s3_bucket" "website" {
